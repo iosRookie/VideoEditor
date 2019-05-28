@@ -4,8 +4,8 @@ platform :ios, '9.0'
 target 'VideoEditor' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'RxSwift', '~> 5.0.0'
-  pod 'RxCocoa', '~> 5.0.0'
+  pod 'RxSwift', '~> 4.5.0'
+  pod 'RxCocoa', '~> 4.5.0'
   pod 'Alamofire', '~> 4.8.2'
 
 
