@@ -13,10 +13,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        VideoReverse.videoReverse(filePath: "", savePath: "")
+            }
+
+    @IBAction func reverse(_ sender: Any) {
+        let filePath = Bundle.main.path(forResource: "test", ofType: "mp4")
+        let savePath = NSTemporaryDirectory() + "video.mp4"
+        if VideoReverse.videoReverse(filePath: filePath!, savePath: savePath) {
+            
+        }
+
     }
-
-
+    
 }
 
