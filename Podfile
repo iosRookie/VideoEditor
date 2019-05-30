@@ -7,6 +7,8 @@ target 'VideoEditor' do
   pod 'RxSwift', '~> 4.5.0'
   pod 'RxCocoa', '~> 4.5.0'
   pod 'Alamofire', '~> 4.8.2'
+  pod 'RxDataSources', '~> 3.1.0'
+  pod 'NSObject+Rx', '~> 4.4.1'
 
 
   target 'VideoEditorTests' do

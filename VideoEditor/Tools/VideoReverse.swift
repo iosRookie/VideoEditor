@@ -9,18 +9,35 @@
 import Foundation
 import AVFoundation
 
-class VideoReverse {
-    class func videoReverse(filePath:String, savePath:String) -> Bool {
+class VideoReverse: NSObject {
+     func videoReverse(filePath:String, savePath:String) -> Bool {
         let asset:AVAsset = AVAsset.init(url: URL.init(fileURLWithPath: filePath))
         asset.loadValuesAsynchronously(forKeys: ["duration", "tracks"]) {
-            print("Assert load finished")
             var error:NSError? = nil
             let dStatus = asset.statusOfValue(forKey: "duration", error: &error)
+            switch dStatus {
+            case .unknown:
+                print("duration load unknown")
+            case .loading:
+                print("duration load loading")
+            case .loaded:
+                print("duration load loaded")
+            case .failed:
+                print("duration load failed")
+            case .cancelled:
+                print("duration load cancelled")
+            }
+            if dStatus != .loaded {
+                print("duration load failed")
+            }
             
             let tStatus = asset.statusOfValue(forKey: "tracks", error: &error)
+            if tStatus != .loaded {
+                print("duration load failed")
+            }
             
             //获取视频轨道
-            let videoTrack = asset.tracks(withMediaType: .video).last!
+            let videoTrack:AVAssetTrack = asset.tracks(withMediaType: .video).last!
             var timeRangeArray:Array = [NSValue]()
             var startTimeArray:Array = [NSValue]()
             var startTime:CMTime = .zero
@@ -39,9 +56,9 @@ class VideoReverse {
             
             var tracks:Array = [AVAssetTrack]()
             var assets:Array = [AVAsset]()
-            for i in 0..<timeRangeArray.count {
+            for i in 0 ..< timeRangeArray.count {
                 let subAsset = AVMutableComposition()
-                let subTrack = subAsset.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)!
+                let subTrack:AVMutableCompositionTrack = subAsset.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)!
                 do {
                     try subTrack.insertTimeRange(timeRangeArray[i] as! CMTimeRange, of: videoTrack, at: startTimeArray[i] as! CMTime)
                     let assetNew:AVAsset = subAsset.copy() as! AVAsset
@@ -52,9 +69,9 @@ class VideoReverse {
                 }
             }
             
-            let totalReader:AVAssetReader = try! AVAssetReader(asset: asset)
             let totalRenderOutputSetting = [kCVPixelBufferPixelFormatTypeKey as String:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
             let totalReaderOutput:AVAssetReaderOutput = AVAssetReaderTrackOutput(track: videoTrack, outputSettings: totalRenderOutputSetting)
+            let totalReader:AVAssetReader = try! AVAssetReader(asset: asset)
             if totalReader.canAdd(totalReaderOutput) {
                 totalReader.add(totalReaderOutput)
             }
@@ -80,10 +97,7 @@ class VideoReverse {
             writer.startSession(atSourceTime: videoTrack.timeRange.start)
             
             var counter = 0
-            //        var totalCountOfArray = 40
-            //        var arrayIncreamsment = 40
             for i in stride(from: tracks.count-1, through: 0, by: -1) {
-                //            [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:tracks[i] outputSettings:totalReaderOutputSettings];
                 let reader:AVAssetReader = try! AVAssetReader(asset: assets[i])
                 let readerOutput:AVAssetReaderTrackOutput = AVAssetReaderTrackOutput(track: tracks[i], outputSettings: totalRenderOutputSetting)
                 if reader.canAdd(readerOutput) {
@@ -112,14 +126,17 @@ class VideoReverse {
                         Thread.sleep(forTimeInterval: 0.1)
                     }
                     let index = countOfFrames - j - 1
-                    
-                    pixelBufferAdapter.append(CMSampleBufferGetImageBuffer(sampleBuffers[index])!, withPresentationTime: tmPTime)
+                    let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffers[index])!
+                    if !pixelBufferAdapter.append(pixelBuffer, withPresentationTime: tmPTime) {
+                        print("添加pixelBuffer失败")
+                    } else {
+                        print("添加pixelBuffer成功")
+                    }
                     counter += 1;
                 }
-                
-                writer.finishWriting {
-                    
-                }
+            }
+            writer.finishWriting {
+                print("写入完成")
             }
         }
         
