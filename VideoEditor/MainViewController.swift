@@ -20,8 +20,8 @@ class MainViewController: UIViewController {
         
         self.myTableview.register(MainCell.self, forCellReuseIdentifier: "MainCell")
         let items = Observable.just([
-            "Reverse",
-            "Second Item",
+            "Video Reverse",
+            "Video Record",
             "Third Item"
             ])
         
@@ -34,7 +34,10 @@ class MainViewController: UIViewController {
         self.myTableview.rx
             .modelSelected(String.self)
             .subscribe(onNext: { value in
-                print("开始选中====\(value)")
+                print("选中====\(value)")
+                if value == "Video Record" {
+                    self.navigationController?.pushViewController(VideoRecordViewController(), animated: true)
+                }
             })
             .disposed(by: disposeBag)
         

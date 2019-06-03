@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03641B8122A4FBB9009625DB /* VideoWriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03641B8022A4FBB9009625DB /* VideoWriteManager.swift */; };
 		037014DB229FE3FF007E9C11 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037014DA229FE3FF007E9C11 /* MainCell.swift */; };
+		039082E822A0D15300695007 /* VideoRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039082E722A0D15300695007 /* VideoRecordViewController.swift */; };
+		039082F322A1052C00695007 /* VideoReverseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039082F122A1052C00695007 /* VideoReverseViewController.swift */; };
+		039082F422A1052C00695007 /* VideoReverseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039082F222A1052C00695007 /* VideoReverseViewController.xib */; };
+		039082F622A1056A00695007 /* VideoRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039082F522A1056A00695007 /* VideoRecordViewController.xib */; };
 		289E96B07E3530D8241D66CD /* Pods_VideoEditorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D47E16156426B4C8C8BAA1D /* Pods_VideoEditorUITests.framework */; };
 		80D78AE958C40889463F9543 /* Pods_VideoEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284A960E1621EF96FCF0A59C /* Pods_VideoEditor.framework */; };
 		D9F56BFFDF89B772BBDDA31D /* Pods_VideoEditorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7DBC5AF78490FAB4A96BDC /* Pods_VideoEditorTests.framework */; };
@@ -41,7 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03641B8022A4FBB9009625DB /* VideoWriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoWriteManager.swift; sourceTree = "<group>"; };
 		037014DA229FE3FF007E9C11 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		039082E722A0D15300695007 /* VideoRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordViewController.swift; sourceTree = "<group>"; };
+		039082F122A1052C00695007 /* VideoReverseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoReverseViewController.swift; sourceTree = "<group>"; };
+		039082F222A1052C00695007 /* VideoReverseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoReverseViewController.xib; sourceTree = "<group>"; };
+		039082F522A1056A00695007 /* VideoRecordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoRecordViewController.xib; sourceTree = "<group>"; };
 		077504B0896B71D924039750 /* Pods-VideoEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoEditor.release.xcconfig"; path = "Target Support Files/Pods-VideoEditor/Pods-VideoEditor.release.xcconfig"; sourceTree = "<group>"; };
 		21AC7AC2515FC4E7010FE03A /* Pods-VideoEditorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoEditorTests.debug.xcconfig"; path = "Target Support Files/Pods-VideoEditorTests/Pods-VideoEditorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		284A960E1621EF96FCF0A59C /* Pods_VideoEditor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoEditor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				F020A14A229D82900021FD38 /* VideoReverse.swift */,
+				03641B8022A4FBB9009625DB /* VideoWriteManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -159,6 +170,10 @@
 				F020A149229D817D0021FD38 /* Tools */,
 				F0C7806F229C273D00559A23 /* AppDelegate.swift */,
 				F0C78071229C273D00559A23 /* MainViewController.swift */,
+				039082E722A0D15300695007 /* VideoRecordViewController.swift */,
+				039082F522A1056A00695007 /* VideoRecordViewController.xib */,
+				039082F122A1052C00695007 /* VideoReverseViewController.swift */,
+				039082F222A1052C00695007 /* VideoReverseViewController.xib */,
 				037014DA229FE3FF007E9C11 /* MainCell.swift */,
 				F0C78073229C273D00559A23 /* Main.storyboard */,
 				F0C78076229C273E00559A23 /* Assets.xcassets */,
@@ -296,8 +311,10 @@
 			files = (
 				F0C7807A229C273E00559A23 /* LaunchScreen.storyboard in Resources */,
 				F0C78077229C273E00559A23 /* Assets.xcassets in Resources */,
+				039082F422A1052C00695007 /* VideoReverseViewController.xib in Resources */,
 				F0C78075229C273D00559A23 /* Main.storyboard in Resources */,
 				F020A146229D80C30021FD38 /* test.mp4 in Resources */,
+				039082F622A1056A00695007 /* VideoRecordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,10 +425,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039082E822A0D15300695007 /* VideoRecordViewController.swift in Sources */,
 				F0C78072229C273D00559A23 /* MainViewController.swift in Sources */,
 				F020A14B229D82900021FD38 /* VideoReverse.swift in Sources */,
 				037014DB229FE3FF007E9C11 /* MainCell.swift in Sources */,
+				039082F322A1052C00695007 /* VideoReverseViewController.swift in Sources */,
 				F0C78070229C273D00559A23 /* AppDelegate.swift in Sources */,
+				03641B8122A4FBB9009625DB /* VideoWriteManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
