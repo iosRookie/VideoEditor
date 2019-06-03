@@ -65,7 +65,7 @@ class VideoRecordViewController: UIViewController, AVCaptureVideoDataOutputSampl
         let connection = captureStillImageOutput?.connection(with: .video)
         captureStillImageOutput?.captureStillImageAsynchronously(from: connection!, completionHandler: { (sampleBuffer:CMSampleBuffer?, error:Error?) in
             if  let data:NSData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer!) as NSData? {
-                let savePath = NSSearchPathForDirectoriesInDomains(NSHomeDirectory, NSUserDomainMask, true)[0]
+//                let savePath = NSSearchPathForDirectoriesInDomains(NSHomeDirectory, NSUserDomainMask, true)[0]
 //                data.write(to: , atomically: <#T##Bool#>)
             }
         })
